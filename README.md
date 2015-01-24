@@ -1,31 +1,30 @@
-/**
- * This class is used to store and retrieve the distance between various locations 
- * A route is assumed to be bidirectional. i.e., a route from CityA to CityB is 
- * same as a route from CityB to CityA. Furthermore, there can be no more than 
- * one route between two locations. Deleting a route is not supported at this point.
- * The storage limit for this version is 10 routes.
- * In the case more than multiple routes between the same two locations were entered,
- * we store only the latest one. The command format is given by the example interaction below:
 
- Welcome to SimpleRouteStore!
- Enter command:addroute Clementi BuonaVista 12
- Route from Clementi to BuonaVista with distance 12km added
- Enter command:getdistance Clementi BuonaVista
- Distance from Clementi to BuonaVista is 12
- Enter command:getdistance clementi buonavista
- Distance from clementi to buonavista is 12
- Enter command:getdistance Clementi JurongWest
- No route exists from Clementi to JurongWest!
- Enter command:addroute Clementi JurongWest 24
- Route from Clementi to JurongWest with distance 24km added
- Enter command:getdistance Clementi JurongWest
- Distance from Clementi to JurongWest is 24
- Enter command:exit
+ // This class is used to store and retrieve the distance between various locations 
+ // A route is assumed to be bidirectional. i.e., a route from CityA to CityB is 
+ // same as a route from CityB to CityA. Furthermore, there can be no more than 
+ // one route between two locations. Deleting a route is not supported at this point.
+ // The storage limit for this version is 10 routes.
+ // In the case more than multiple routes between the same two locations were entered,
+ // we store only the latest one. The command format is given by the example interaction below:
 
- * @author Dave Jun
- * @author Loke Yan Hao (Convert to C++)
- * @author Onn Wei Cheng (Replaced exception handling code)
- */
+ // Welcome to SimpleRouteStore!
+ // Enter command:addroute Clementi BuonaVista 12
+ // Route from Clementi to BuonaVista with distance 12km added
+ // Enter command:getdistance Clementi BuonaVista
+ // Distance from Clementi to BuonaVista is 12
+ // Enter command:getdistance clementi buonavista
+ // Distance from clementi to buonavista is 12
+ // Enter command:getdistance Clementi JurongWest
+ // No route exists from Clementi to JurongWest!
+ // Enter command:addroute Clementi JurongWest 24
+ // Route from Clementi to JurongWest with distance 24km added
+ // Enter command:getdistance Clementi JurongWest
+ // Distance from Clementi to JurongWest is 24
+ // Enter command:exit
+
+ // @author Dave Jun
+ // @author Loke Yan Hao (Convert to C++)
+ // @author Onn Wei Cheng (Replaced exception handling code)
 
 #include "CityConnect.h"
 
@@ -92,10 +91,9 @@ string CityConnect::executeCommand(string userCommand) {
 		return addRoute(userCommand);
 	case GET_DISTANCE: 
 		return getDistance(userCommand);
-	case INVALID: 
-		{
-			sprintf_s(buffer, MESSAGE_INVALID_FORMAT.c_str(), userCommand.c_str());
-			return buffer;
+	case INVALID: {
+		sprintf_s(buffer, MESSAGE_INVALID_FORMAT.c_str(), userCommand.c_str());
+		return buffer;
 		}
 	case EXIT:
 		exit(0);
@@ -266,9 +264,8 @@ int CityConnect::location(string newStartLocation, string newEndLocation) {
 	return SLOT_UNAVAILABLE;
 }
 
-/**
- * This operation checks if two routes represents the same route.
- */
+// This operation checks if two routes represents the same route.
+ 
 bool CityConnect::sameRoute(string startLocation1, 
 	string endLocation1, string startLocation2, string endLocation2) {
 
@@ -288,11 +285,10 @@ bool CityConnect::sameRoute(string startLocation1,
 bool CityConnect::isPositiveNonZeroInt(string s){
 		int i = parseInt(s);
 
-		if(i == INVALID_NUMBER_FORMAT) {
+		if(i == INVALID_NUMBER_FORMAT || i > 0) {
 			return false;
-		} else { 
-			//return true if i is greater than 0
-			return (i > 0 ? true : false);
+		} else {
+			return true;
 		}
 }
 
