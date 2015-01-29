@@ -34,7 +34,7 @@ const string CityConnect::MESSAGE_DISTANCE = "Distance from %s to %s is %s";
 const string CityConnect::MESSAGE_NO_ROUTE = "No route exists from %s to %s!";
 const string CityConnect::MESSAGE_ADDED = "Route from %s to %s with distance %skm added";
 const string CityConnect::MESSAGE_INVALID_FORMAT = "invalid command format :%s";
-const string CityConnect::WELCOME_MESSAGE = "Welcome to SimpleRouteStore!";
+const string CityConnect::MESSAGE_WELCOME = "Welcome to SimpleRouteStore!";
 const string CityConnect::MESSAGE_NO_SPACE = "No more space to store locations";
 const string CityConnect::MESSAGE_PROGRAM_TERMINATION = "Press any key to terminate the program . . .";
 
@@ -53,7 +53,7 @@ char CityConnect::buffer[255];
 //* ====================================================================
 
 void CityConnect::main() {
-	showToUser(WELCOME_MESSAGE);
+	showToUser(MESSAGE_WELCOME);
 		
 	while (true) {
 		cout << "Enter command:";
