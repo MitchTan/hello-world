@@ -92,10 +92,9 @@ string CityConnect::executeCommand(string userCommand) {
 		return addRoute(userCommand);
 	case GET_DISTANCE: 
 		return getDistance(userCommand);
-	case INVALID: 
-		{
-			sprintf_s(buffer, MESSAGE_INVALID_FORMAT.c_str(), userCommand.c_str());
-			return buffer;
+	case INVALID: {
+		sprintf_s(buffer, MESSAGE_INVALID_FORMAT.c_str(), userCommand.c_str());
+		return buffer;
 		}
 	case EXIT:
 		exit(0);
