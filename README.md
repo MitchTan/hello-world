@@ -1,31 +1,31 @@
-/**
- * This class is used to store and retrieve the distance between various locations 
- * A route is assumed to be bidirectional. i.e., a route from CityA to CityB is 
- * same as a route from CityB to CityA. Furthermore, there can be no more than 
- * one route between two locations. Deleting a route is not supported at this point.
- * The storage limit for this version is 10 routes.
- * In the case more than multiple routes between the same two locations were entered,
- * we store only the latest one. The command format is given by the example interaction below:
+//
+// * This class is used to store and retrieve the distance between various locations 
+// * A route is assumed to be bidirectional. i.e., a route from CityA to CityB is 
+// * same as a route from CityB to CityA. Furthermore, there can be no more than 
+// * one route between two locations. Deleting a route is not supported at this point.
+// * The storage limit for this version is 10 routes.
+// * In the case more than multiple routes between the same two locations were entered,
+// * we store only the latest one. The command format is given by the example interaction below:
 
- Welcome to SimpleRouteStore!
- Enter command:addroute Clementi BuonaVista 12
- Route from Clementi to BuonaVista with distance 12km added
- Enter command:getdistance Clementi BuonaVista
- Distance from Clementi to BuonaVista is 12
- Enter command:getdistance clementi buonavista
- Distance from clementi to buonavista is 12
- Enter command:getdistance Clementi JurongWest
- No route exists from Clementi to JurongWest!
- Enter command:addroute Clementi JurongWest 24
- Route from Clementi to JurongWest with distance 24km added
- Enter command:getdistance Clementi JurongWest
- Distance from Clementi to JurongWest is 24
- Enter command:exit
+// Welcome to SimpleRouteStore!
+// Enter command:addroute Clementi BuonaVista 12
+// Route from Clementi to BuonaVista with distance 12km added
+// Enter command:getdistance Clementi BuonaVista
+// Distance from Clementi to BuonaVista is 12
+// Enter command:getdistance clementi buonavista
+// Distance from clementi to buonavista is 12
+// Enter command:getdistance Clementi JurongWest
+// No route exists from Clementi to JurongWest!
+// Enter command:addroute Clementi JurongWest 24
+// Route from Clementi to JurongWest with distance 24km added
+// Enter command:getdistance Clementi JurongWest
+// Distance from Clementi to JurongWest is 24
+// Enter command:exit
 
- * @author Dave Jun
- * @author Loke Yan Hao (Convert to C++)
- * @author Onn Wei Cheng (Replaced exception handling code)
- */
+// * @author Dave Jun
+// * @author Loke Yan Hao (Convert to C++)
+// * @author Onn Wei Cheng (Replaced exception handling code)
+// */
 
 #include "CityConnect.h"
 
@@ -34,7 +34,7 @@ const string CityConnect::MESSAGE_DISTANCE = "Distance from %s to %s is %s";
 const string CityConnect::MESSAGE_NO_ROUTE = "No route exists from %s to %s!";
 const string CityConnect::MESSAGE_ADDED = "Route from %s to %s with distance %skm added";
 const string CityConnect::MESSAGE_INVALID_FORMAT = "invalid command format :%s";
-const string CityConnect::WELCOME_MESSAGE = "Welcome to SimpleRouteStore!";
+const string CityConnect::MESSAGE_WELCOME = "Welcome to SimpleRouteStore!";
 const string CityConnect::MESSAGE_NO_SPACE = "No more space to store locations";
 const string CityConnect::MESSAGE_PROGRAM_TERMINATION = "Press any key to terminate the program . . .";
 
@@ -45,15 +45,15 @@ const string CityConnect::ERROR_NULL_ROUTE_ENDPT = "ERROR: Route end points cann
 string CityConnect::route[10][3];
 char CityConnect::buffer[255];
 
-/*
-* ==============NOTE TO STUDENTS======================================
-* Notice how this method solves the whole problem at a very high level. We
-* can understand the high-level logic of the program by reading this method
-* alone.
-* ====================================================================
-*/
+
+//* ==============NOTE TO STUDENTS======================================
+//* Notice how this method solves the whole problem at a very high level. We
+//* can understand the high-level logic of the program by reading this method
+//* alone.
+//* ====================================================================
+
 void CityConnect::main() {
-	showToUser(WELCOME_MESSAGE);
+	showToUser(MESSAGE_WELCOME);
 		
 	while (true) {
 		cout << "Enter command:";
@@ -65,13 +65,11 @@ void CityConnect::main() {
 	}
 }
 
-/*
-* ==============NOTE TO STUDENTS====================================== 
-* If the reader wants a deeper understanding of the solution, he/she can go to
-* the next level of abstraction by reading methods (given below)
-* that is referenced by the method above.
-* ====================================================================
-*/
+//* ==============NOTE TO STUDENTS====================================== 
+//* If the reader wants a deeper understanding of the solution, he/she can go to
+//* the next level of abstraction by reading methods (given below)
+//* that is referenced by the method above.
+//* ====================================================================
 
 void CityConnect::showToUser(string text) {
 	cout << text << endl;
@@ -107,29 +105,26 @@ string CityConnect::executeCommand(string userCommand) {
 		exit(EXIT_FAILURE);
 	}
 
-	/* 
-	 * ==============NOTE TO STUDENTS==================================
-	 * If the rest of the program is correct, this error will never be
-	 * thrown. That is why we use an Error instead of an Exception. 
-	 * ================================================================
-	 */
+	
+	// * ==============NOTE TO STUDENTS==================================
+	// * If the rest of the program is correct, this error will never be
+	// * thrown. That is why we use an Error instead of an Exception. 
+	// * ================================================================
 }
 
-/* ==============NOTE TO STUDENTS======================================
- * After reading the above code, the reader should have a reasonable
- * understanding of how the program works. If the reader wants to go 
- * EVEN more deep into the solution, he/she can read the methods given 
- * below that solves various sub-problems at lower levels of abstraction. 
- * ====================================================================
- */
+// ==============NOTE TO STUDENTS======================================
+// * After reading the above code, the reader should have a reasonable
+// * understanding of how the program works. If the reader wants to go 
+// * EVEN more deep into the solution, he/she can read the methods given 
+// * below that solves various sub-problems at lower levels of abstraction. 
+// * ====================================================================
 	
-/**
- * This operation determines which of the supported command types the user
- * wants to perform
- * 
- * @param commandTypeString
- *            is the first word of the user command
- */
+// * This operation determines which of the supported command types the user
+// * wants to perform
+// * 
+// * @param commandTypeString
+// *            is the first word of the user command
+
 CityConnect::COMMAND_TYPE CityConnect::determineCommandType(string commandTypeString) {
 
 	    // In C++, we do not need to check if the string is null if it is not declare as a pointer
@@ -145,13 +140,12 @@ CityConnect::COMMAND_TYPE CityConnect::determineCommandType(string commandTypeSt
 	}
 }
 
-/**
- * This operation is used to find the distance between two locations
- * 
- * @param userCommand
- *            is the full string user has entered as the command
- * @return the distance
- */
+// * This operation is used to find the distance between two locations
+// * 
+// * @param userCommand
+// *            is the full string user has entered as the command
+// * @return the distance
+
 string CityConnect::getDistance(string userCommand) {
 
 	vector<string> parameters = splitParameters(removeFirstWord(userCommand));
@@ -176,10 +170,9 @@ string CityConnect::getDistance(string userCommand) {
 	}
 }
 
-/**
- * @return Returns the position of the route represented by 
- *    newStartLocation and newEndLocation. Returns NOT_FOUND if not found.
- */
+// * @return Returns the position of the route represented by 
+// *    newStartLocation and newEndLocation. Returns NOT_FOUND if not found.
+ 
 int CityConnect::getPositionOfExistingRoute(string newStartLocation, string newEndLocation) {
 	for (int i = 0; i < sizeOfArray(route); i++) {
 			
@@ -197,15 +190,14 @@ int CityConnect::getPositionOfExistingRoute(string newStartLocation, string newE
 	return NOT_FOUND;
 }
 
-/**
- * This operation adds a route to the storage. If the route already exists,
- * it will be overwritten.
- * 
- * @param userCommand
- *            (although we receive the full user command, we assume without
- *            checking the first word to be 'addroute')
- * @return status of the operation
- */
+// * This operation adds a route to the storage. If the route already exists,
+// * it will be overwritten.
+// * 
+// * @param userCommand
+// *            (although we receive the full user command, we assume without
+// *            checking the first word to be 'addroute')
+// * @return status of the operation
+ 
 string CityConnect::addRoute(string userCommand) {
 
 	vector<string> parameters = splitParameters(removeFirstWord(userCommand));
@@ -243,11 +235,10 @@ void CityConnect::addRouteAtPosition(string newStartLocation, string newEndLocat
 	route[entryPosition][STORAGE_POSITION_DISTANCE] = distance;
 }
 
-/**
- * @return Returns a suitable slot for the route represented by 
- *   newStartLocation and newEndLocation. Returns SLOT_UNAVAILABLE if
- *   no suitable slot is found.
- */
+// * @return Returns a suitable slot for the route represented by 
+// *   newStartLocation and newEndLocation. Returns SLOT_UNAVAILABLE if
+// *   no suitable slot is found.
+ 
 int CityConnect::location(string newStartLocation, string newEndLocation) {
 	for (int i = 0; i < sizeOfArray(route); i++) {
 
@@ -265,9 +256,8 @@ int CityConnect::location(string newStartLocation, string newEndLocation) {
 	return SLOT_UNAVAILABLE;
 }
 
-/**
- * This operation checks if two routes represents the same route.
- */
+// * This operation checks if two routes represents the same route.
+// 
 bool CityConnect::sameRoute(string startLocation1, 
 	string endLocation1, string startLocation2, string endLocation2) {
 
